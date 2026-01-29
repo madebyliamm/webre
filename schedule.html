@@ -6,18 +6,8 @@
     <title>Schedule a Call - webre.co</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #0A0E27;
-            --accent: #00D9FF;
-            --accent-dark: #00B8D4;
-            --text-muted: #9CA3AF;
-            --bg: #FAFAFA;
-            --gradient: linear-gradient(135deg, #00D9FF 0%, #0066FF 100%);
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -25,11 +15,12 @@
         }
 
         body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg);
-            color: var(--primary);
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
             padding: 2rem;
+            min-height: 100vh;
         }
 
         .container {
@@ -40,379 +31,333 @@
         .back-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #2563eb;
+            border-radius: 50%;
+            color: #fff;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1.2rem;
+            transition: all 0.2s;
             margin-bottom: 2rem;
-            transition: all 0.3s ease;
         }
 
         .back-link:hover {
-            color: var(--accent);
-            transform: translateX(-5px);
+            background: #1d4ed8;
+            transform: scale(1.05);
         }
 
         .card {
-            background: white;
-            border-radius: 24px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
             padding: 3rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-
-        .header {
-            margin-bottom: 2rem;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .logo {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            flex-shrink: 0;
-            line-height: 1;
-            padding-bottom: 3px;
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
-            font-weight: 700;
+            text-align: center;
         }
 
         .subtitle {
-            color: var(--text-muted);
+            color: #666;
+            margin-bottom: 2rem;
             font-size: 1.05rem;
+            text-align: center;
         }
 
         .availability-banner {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
-            border: 1px solid rgba(0, 217, 255, 0.3);
+            background: #f0f7ff;
+            border: 2px solid #2563eb;
             border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
+            padding: 1.25rem;
+            margin-bottom: 3rem;
+            text-align: center;
         }
 
         .availability-banner h3 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: var(--accent-dark);
-            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            color: #2563eb;
+            margin-bottom: 0.75rem;
         }
 
         .availability-times {
             display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
             font-size: 0.95rem;
-            color: var(--primary);
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999;
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         label {
             display: block;
-            margin-bottom: 0.5rem;
             font-weight: 600;
-            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #1a1a1a;
         }
 
-        input {
+        input, textarea {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #E5E7EB;
-            border-radius: 12px;
-            font-family: 'Manrope', sans-serif;
+            padding: 0.85rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-family: inherit;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
         }
 
-        input:focus {
+        input:focus, textarea:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+            border-color: #2563eb;
         }
 
-        /* Digital Clock Time Picker */
-        .time-picker-container {
-            margin-top: 0.5rem;
+        textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
-        .digital-clock {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        /* Week Selector */
+        .week-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
             margin-bottom: 1.5rem;
         }
 
-        .time-display {
-            font-family: 'Courier New', monospace;
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
-            letter-spacing: 0.1em;
-            display: flex;
-            align-items: center;
-            gap: 0.2rem;
-        }
-
-        .time-separator {
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0.3; }
-        }
-
-        .period-display {
-            font-family: 'Courier New', monospace;
-            font-size: 2rem;
-            color: rgba(0, 217, 255, 0.8);
-            margin-left: 0.5rem;
-        }
-
-        .time-controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .time-control {
+        .week-option {
+            padding: 1rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .time-control-label {
-            font-size: 0.85rem;
+        .week-option:hover {
+            border-color: #2563eb;
+            background: #f8faff;
+        }
+
+        .week-option.selected {
+            border-color: #2563eb;
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .week-label {
+            font-size: 0.75rem;
             font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            opacity: 0.7;
+            margin-bottom: 0.25rem;
         }
 
-        .time-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .week-option.selected .week-label {
+            opacity: 1;
         }
 
-        .time-btn {
-            background: white;
-            border: 2px solid #E5E7EB;
-            border-radius: 12px;
-            padding: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--primary);
+        .week-dates {
+            font-size: 0.85rem;
+            font-weight: 500;
         }
 
-        .time-btn:hover {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .time-btn:active {
-            transform: translateY(0);
-        }
-
-        .period-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .period-btn {
-            flex: 1;
-            background: white;
-            border: 2px solid #E5E7EB;
-            border-radius: 12px;
-            padding: 0.75rem;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--primary);
-        }
-
-        .period-btn.active {
-            background: var(--gradient);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        .period-btn:hover:not(.active) {
-            background: #f0f0f0;
-            border-color: var(--accent);
-        }
-
-        .availability-notice {
-            background: #FEF3C7;
-            border: 1px solid #FCD34D;
-            border-radius: 12px;
-            padding: 1rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #92400E;
+        /* Day Selector */
+        .day-selector-section {
             display: none;
         }
 
-        .availability-notice.show {
+        .day-selector-section.active {
             display: block;
+        }
+
+        .day-selector {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .day-option {
+            padding: 0.85rem 0.5rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .day-option:hover {
+            border-color: #2563eb;
+            background: #f8faff;
+        }
+
+        .day-option.selected {
+            border-color: #2563eb;
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .day-option.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .day-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.25rem;
+        }
+
+        .day-date {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        /* Time Picker */
+        .time-slots-container {
+            display: none;
+        }
+
+        .time-slots-container.active {
+            display: block;
+        }
+
+        .time-picker {
+            background: transparent;
+            padding: 2rem 0;
+        }
+
+        .time-picker-display {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .time-separator {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 0 0.5rem;
+            align-self: center;
+            line-height: 1;
+            padding-bottom: 1.5rem;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .time-arrow-btn {
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: #2563eb;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.2s;
+            width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .time-arrow-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .time-arrow-btn:active {
+            transform: scale(0.95);
+        }
+
+        .time-value-display {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2563eb;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .time-unit-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 0.5px;
         }
 
         .btn {
             width: 100%;
-            padding: 1.25rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-            cursor: pointer;
+            padding: 1.15rem;
+            background: #2563eb;
+            color: #fff;
             border: none;
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
         }
 
         .btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+            background: #1d4ed8;
+            transform: translateY(-2px);
         }
 
         .btn:disabled {
-            opacity: 0.6;
+            opacity: 0.4;
             cursor: not-allowed;
-            transform: none;
         }
 
-        .success-message {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 2rem;
+        .success {
+            background: #2563eb;
+            color: #fff;
+            padding: 3rem 2rem;
             border-radius: 16px;
             text-align: center;
             display: none;
         }
 
-        .success-message.show {
-            display: block;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .success-message h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .success-message p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-
-        /* Scheduled Calls Section */
-        .scheduled-calls {
-            display: none;
-        }
-
-        .scheduled-calls.show {
+        .success.show {
             display: block;
         }
 
-        .scheduled-calls h2 {
-            font-family: 'Playfair Display', serif;
+        .success h3 {
             font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .call-item {
-            background: var(--bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .call-info h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .call-info p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .delete-btn {
-            background: #EF4444;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .delete-btn:hover {
-            background: #DC2626;
-            transform: scale(1.05);
+            margin-bottom: 0.75rem;
         }
 
         @media (max-width: 768px) {
@@ -428,381 +373,363 @@
                 font-size: 2rem;
             }
 
-            .time-display {
-                font-size: 3rem;
+            .week-selector {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .period-display {
-                font-size: 1.5rem;
+            .day-selector {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 0.35rem;
             }
 
-            .time-controls {
-                gap: 0.75rem;
+            .day-option {
+                padding: 0.6rem 0.25rem;
             }
 
-            .call-item {
+            .day-name {
+                font-size: 0.6rem;
+            }
+
+            .day-date {
+                font-size: 0.8rem;
+            }
+
+            .availability-times {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .delete-btn {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                width: 45px;
-                height: 45px;
-                font-size: 1.5rem;
-            }
-
-            .logo-text {
-                font-size: 1.5rem;
+                gap: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Back to Home</a>
-        
         <div class="card" id="formCard">
-            <div class="header">
-                <div class="logo-container">
-                    <div class="logo">w</div>
-                    <div class="logo-text">webre.co</div>
-                </div>
-                <h1>Schedule a Call</h1>
-                <p class="subtitle">Book your free 30-minute consultation with us</p>
-            </div>
+            <a href="index.html" class="back-link">←</a>
+            
+            <h1>Schedule Your Call</h1>
+            <p class="subtitle">Book your free 15-minute strategy call</p>
 
             <div class="availability-banner">
                 <h3>📅 Our Availability</h3>
                 <div class="availability-times">
-                    <div><strong>Weekdays:</strong> 2:30 PM - 10:00 PM CST</div>
-                    <div><strong>Weekends:</strong> Anytime (24 hours)</div>
+                    <div><strong>Weekdays:</strong> 3:00 PM - 7:00 PM ET</div>
+                    <div><strong>Weekends:</strong> 9:00 AM - 5:00 PM ET</div>
                 </div>
             </div>
 
             <form id="scheduleForm">
-                <div class="form-group">
-                    <label for="name">Your Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="John Smith">
+                <!-- Contact Info -->
+                <div class="form-section">
+                    <div class="form-section-title">Your Information</div>
+
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" name="company" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone *</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Website URL (Optional)</label>
+                        <input type="url" name="website" placeholder="https://yourwebsite.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notes (Optional)</label>
+                        <textarea name="notes" placeholder="Anything you'd like us to know before the call"></textarea>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="company">Company Name *</label>
-                    <input type="text" id="company" name="company" required placeholder="Acme Inc.">
-                </div>
+                <!-- Date Selection -->
+                <div class="form-section">
+                    <div class="form-section-title">Choose Your Date & Time</div>
+                    
+                    <div class="form-group">
+                        <label>Select Week</label>
+                        <div class="week-selector" id="weekSelector"></div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="john@acme.com">
-                </div>
+                    <div class="form-group day-selector-section" id="daySelectorSection">
+                        <label>Select Day</label>
+                        <div class="day-selector" id="daySelector"></div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
-                </div>
-
-                <div class="form-group">
-                    <label for="date">Preferred Date *</label>
-                    <input type="date" id="date" name="date" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Preferred Time *</label>
-                    <div class="time-picker-container">
-                        <div class="digital-clock">
-                            <div class="time-display">
-                                <span id="hourDisplay">12</span>
-                                <span class="time-separator">:</span>
-                                <span id="minuteDisplay">00</span>
-                            </div>
-                            <div class="period-display" id="periodDisplay">PM</div>
-                        </div>
-                        <div class="time-controls">
-                            <div class="time-control">
-                                <div class="time-control-label">Hour</div>
-                                <div class="time-buttons">
-                                    <button type="button" class="time-btn" id="hourUp">▲</button>
-                                    <button type="button" class="time-btn" id="hourDown">▼</button>
+                    <div class="form-group time-slots-container" id="timeSlotsContainer">
+                        <label>Select Time</label>
+                        <div class="time-picker">
+                            <div class="time-picker-display">
+                                <div class="time-unit">
+                                    <button type="button" class="time-arrow-btn" id="hourUp">▲</button>
+                                    <div class="time-value-display" id="hourDisplay">3</div>
+                                    <button type="button" class="time-arrow-btn" id="hourDown">▼</button>
+                                    <div class="time-unit-label">Hour</div>
+                                </div>
+                                <div class="time-separator">:</div>
+                                <div class="time-unit">
+                                    <button type="button" class="time-arrow-btn" id="minuteUp">▲</button>
+                                    <div class="time-value-display" id="minuteDisplay">00</div>
+                                    <button type="button" class="time-arrow-btn" id="minuteDown">▼</button>
+                                    <div class="time-unit-label">Minute</div>
+                                </div>
+                                <div class="time-unit">
+                                    <button type="button" class="time-arrow-btn" id="periodUp">▲</button>
+                                    <div class="time-value-display" id="periodDisplay">PM</div>
+                                    <button type="button" class="time-arrow-btn" id="periodDown">▼</button>
+                                    <div class="time-unit-label">AM/PM</div>
                                 </div>
                             </div>
-                            <div class="time-control">
-                                <div class="time-control-label">Minute</div>
-                                <div class="time-buttons">
-                                    <button type="button" class="time-btn" id="minuteUp">▲</button>
-                                    <button type="button" class="time-btn" id="minuteDown">▼</button>
-                                </div>
-                            </div>
-                            <div class="time-control">
-                                <div class="time-control-label">Period</div>
-                                <div class="period-buttons">
-                                    <button type="button" class="period-btn" id="amBtn">AM</button>
-                                    <button type="button" class="period-btn active" id="pmBtn">PM</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="availability-notice" id="availabilityNotice">
-                            ⚠️ Please note: On weekdays, we're only available from 2:30 PM to 10:00 PM CST
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="btn" id="submitBtn">Schedule Call</button>
+                <button type="submit" class="btn" id="submitBtn" disabled>Schedule My Call</button>
             </form>
-
-            <div class="success-message" id="successMessage">
-                <h3>✓ Call Scheduled!</h3>
-                <p>We've received your request and will send you a confirmation email shortly.</p>
-            </div>
         </div>
 
-        <div class="card scheduled-calls" id="scheduledCallsSection">
-            <h2>Your Scheduled Calls</h2>
-            <div id="callsList"></div>
+        <div class="success" id="successMessage">
+            <h3>✓ Call Scheduled!</h3>
+            <p>We'll call you at your scheduled time. Check your email for confirmation.</p>
         </div>
     </div>
 
     <script>
-        // Time picker state
-        let hour = 12;
-        let minute = 0;
-        let period = 'PM';
+        // State
+        let selectedWeek = null;
+        let selectedDay = null;
+        let currentHour = 3;
+        let currentMinute = 0;
+        let currentPeriod = 'PM';
 
-        // Elements
-        const hourDisplay = document.getElementById('hourDisplay');
-        const minuteDisplay = document.getElementById('minuteDisplay');
-        const periodDisplay = document.getElementById('periodDisplay');
-        const hourUpBtn = document.getElementById('hourUp');
-        const hourDownBtn = document.getElementById('hourDown');
-        const minuteUpBtn = document.getElementById('minuteUp');
-        const minuteDownBtn = document.getElementById('minuteDown');
-        const amBtn = document.getElementById('amBtn');
-        const pmBtn = document.getElementById('pmBtn');
-        const dateInput = document.getElementById('date');
-        const availabilityNotice = document.getElementById('availabilityNotice');
-        const scheduleForm = document.getElementById('scheduleForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const successMessage = document.getElementById('successMessage');
-        const formCard = document.getElementById('formCard');
-        const scheduledCallsSection = document.getElementById('scheduledCallsSection');
-        const callsList = document.getElementById('callsList');
-
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
-
-        // Update display
-        function updateDisplay() {
-            hourDisplay.textContent = hour.toString().padStart(2, '0');
-            minuteDisplay.textContent = minute.toString().padStart(2, '0');
-            periodDisplay.textContent = period;
-            checkAvailability();
+        // Generate weeks (Sunday to Saturday) starting THIS week
+        function generateWeeks() {
+            const weekSelector = document.getElementById('weekSelector');
+            const today = new Date();
+            
+            // Find this Sunday
+            const daysSinceSunday = today.getDay();
+            const thisSunday = new Date(today);
+            thisSunday.setDate(today.getDate() - daysSinceSunday);
+            
+            const weekLabels = ['This Week', 'Next Week', '2 Weeks', '3 Weeks'];
+            
+            for (let i = 0; i < 4; i++) {
+                const weekStart = new Date(thisSunday);
+                weekStart.setDate(thisSunday.getDate() + (i * 7));
+                
+                const weekEnd = new Date(weekStart);
+                weekEnd.setDate(weekStart.getDate() + 6);
+                
+                const weekOption = document.createElement('div');
+                weekOption.className = 'week-option';
+                weekOption.dataset.week = i;
+                weekOption.innerHTML = `
+                    <div class="week-label">${weekLabels[i]}</div>
+                    <div class="week-dates">${weekStart.getMonth() + 1}/${weekStart.getDate()} - ${weekEnd.getMonth() + 1}/${weekEnd.getDate()}</div>
+                `;
+                
+                weekOption.addEventListener('click', () => {
+                    document.querySelectorAll('.week-option').forEach(w => w.classList.remove('selected'));
+                    weekOption.classList.add('selected');
+                    selectedWeek = i;
+                    generateDays(weekStart, i === 0);
+                    selectedDay = null;
+                    document.getElementById('timeSlotsContainer').classList.remove('active');
+                    document.getElementById('daySelectorSection').classList.add('active');
+                    checkFormComplete();
+                });
+                
+                weekSelector.appendChild(weekOption);
+            }
         }
 
-        // Hour controls
-        hourUpBtn.addEventListener('click', () => {
-            hour = hour === 12 ? 1 : hour + 1;
-            updateDisplay();
-        });
+        // Generate days for selected week
+        function generateDays(weekStart, isThisWeek) {
+            const daySelector = document.getElementById('daySelector');
+            daySelector.innerHTML = '';
+            
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(weekStart);
+                date.setDate(weekStart.getDate() + i);
+                date.setHours(0, 0, 0, 0);
+                
+                const isPastOrToday = isThisWeek && date <= today;
+                
+                const dayOption = document.createElement('div');
+                dayOption.className = 'day-option';
+                if (isPastOrToday) dayOption.classList.add('disabled');
+                dayOption.dataset.date = date.toISOString();
+                dayOption.innerHTML = `
+                    <div class="day-name">${days[i]}</div>
+                    <div class="day-date">${date.getDate()}</div>
+                `;
+                
+                if (!isPastOrToday) {
+                    dayOption.addEventListener('click', () => {
+                        document.querySelectorAll('.day-option').forEach(d => d.classList.remove('selected'));
+                        dayOption.classList.add('selected');
+                        selectedDay = date;
+                        initTimePicker(date);
+                        document.getElementById('timeSlotsContainer').classList.add('active');
+                        checkFormComplete();
+                    });
+                }
+                
+                daySelector.appendChild(dayOption);
+            }
+        }
 
-        hourDownBtn.addEventListener('click', () => {
-            hour = hour === 1 ? 12 : hour - 1;
-            updateDisplay();
-        });
-
-        // Minute controls (15-minute intervals)
-        minuteUpBtn.addEventListener('click', () => {
-            minute = (minute + 15) % 60;
-            updateDisplay();
-        });
-
-        minuteDownBtn.addEventListener('click', () => {
-            minute = minute === 0 ? 45 : minute - 15;
-            updateDisplay();
-        });
-
-        // Period controls
-        amBtn.addEventListener('click', () => {
-            period = 'AM';
-            amBtn.classList.add('active');
-            pmBtn.classList.remove('active');
-            updateDisplay();
-        });
-
-        pmBtn.addEventListener('click', () => {
-            period = 'PM';
-            pmBtn.classList.add('active');
-            amBtn.classList.remove('active');
-            updateDisplay();
-        });
-
-        // Check if selected time is within availability
-        function checkAvailability() {
-            const selectedDate = dateInput.value;
-            if (!selectedDate) return;
-
-            const date = new Date(selectedDate + 'T00:00:00');
+        // Initialize time picker with valid range for selected day
+        function initTimePicker(date) {
             const dayOfWeek = date.getDay();
             const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-
+            
             if (isWeekend) {
-                availabilityNotice.classList.remove('show');
-                return;
-            }
-
-            // Convert to 24-hour format
-            let hour24 = hour;
-            if (period === 'PM' && hour !== 12) hour24 += 12;
-            if (period === 'AM' && hour === 12) hour24 = 0;
-
-            const timeInMinutes = hour24 * 60 + minute;
-            const minTime = 14 * 60 + 30; // 2:30 PM
-            const maxTime = 22 * 60; // 10:00 PM
-
-            if (timeInMinutes < minTime || timeInMinutes > maxTime) {
-                availabilityNotice.classList.add('show');
+                // Weekends: default to 9 AM
+                currentHour = 9;
+                currentPeriod = 'AM';
             } else {
-                availabilityNotice.classList.remove('show');
+                // Weekdays: default to 3 PM
+                currentHour = 3;
+                currentPeriod = 'PM';
+            }
+            currentMinute = 0;
+            
+            updateTimeDisplay();
+        }
+
+        // Update time display
+        function updateTimeDisplay() {
+            document.getElementById('hourDisplay').textContent = currentHour;
+            document.getElementById('minuteDisplay').textContent = currentMinute.toString().padStart(2, '0');
+            document.getElementById('periodDisplay').textContent = currentPeriod;
+        }
+
+        // Check if time is valid for selected day
+        function isTimeValid() {
+            if (!selectedDay) return false;
+            
+            const dayOfWeek = selectedDay.getDay();
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            
+            // Convert to 24-hour for comparison
+            let hour24 = currentHour;
+            if (currentPeriod === 'PM' && currentHour !== 12) hour24 += 12;
+            if (currentPeriod === 'AM' && currentHour === 12) hour24 = 0;
+            
+            if (isWeekend) {
+                // Weekends: 9 AM (9) to 5 PM (17)
+                return hour24 >= 9 && hour24 <= 17;
+            } else {
+                // Weekdays: 3 PM (15) to 7 PM (19)
+                return hour24 >= 15 && hour24 <= 19;
             }
         }
 
-        // Check availability when date changes
-        dateInput.addEventListener('change', checkAvailability);
+        // Arrow button handlers
+        document.getElementById('hourUp').addEventListener('click', () => {
+            currentHour = currentHour === 12 ? 1 : currentHour + 1;
+            updateTimeDisplay();
+            checkFormComplete();
+        });
 
-        // Load scheduled calls from localStorage
-        function loadScheduledCalls() {
-            const calls = JSON.parse(localStorage.getItem('scheduledCalls') || '[]');
-            if (calls.length > 0) {
-                scheduledCallsSection.classList.add('show');
-                callsList.innerHTML = '';
-                calls.forEach((call, index) => {
-                    const callItem = document.createElement('div');
-                    callItem.className = 'call-item';
-                    callItem.innerHTML = `
-                        <div class="call-info">
-                            <h3>${call.date} at ${call.time}</h3>
-                            <p>${call.company} - ${call.name}</p>
-                        </div>
-                        <button class="delete-btn" onclick="deleteCall(${index})">Delete</button>
-                    `;
-                    callsList.appendChild(callItem);
-                });
-            } else {
-                scheduledCallsSection.classList.remove('show');
-            }
+        document.getElementById('hourDown').addEventListener('click', () => {
+            currentHour = currentHour === 1 ? 12 : currentHour - 1;
+            updateTimeDisplay();
+            checkFormComplete();
+        });
+
+        document.getElementById('minuteUp').addEventListener('click', () => {
+            const minutes = [0, 15, 30, 45];
+            const currentIndex = minutes.indexOf(currentMinute);
+            currentMinute = minutes[(currentIndex + 1) % 4];
+            updateTimeDisplay();
+            checkFormComplete();
+        });
+
+        document.getElementById('minuteDown').addEventListener('click', () => {
+            const minutes = [0, 15, 30, 45];
+            const currentIndex = minutes.indexOf(currentMinute);
+            currentMinute = minutes[(currentIndex - 1 + 4) % 4];
+            updateTimeDisplay();
+            checkFormComplete();
+        });
+
+        document.getElementById('periodUp').addEventListener('click', () => {
+            currentPeriod = currentPeriod === 'AM' ? 'PM' : 'AM';
+            updateTimeDisplay();
+            checkFormComplete();
+        });
+
+        document.getElementById('periodDown').addEventListener('click', () => {
+            currentPeriod = currentPeriod === 'AM' ? 'PM' : 'AM';
+            updateTimeDisplay();
+            checkFormComplete();
+        });
+
+        function checkFormComplete() {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = !(selectedDay && isTimeValid());
         }
-
-        // Delete call
-        window.deleteCall = function(index) {
-            const calls = JSON.parse(localStorage.getItem('scheduledCalls') || '[]');
-            calls.splice(index, 1);
-            localStorage.setItem('scheduledCalls', JSON.stringify(calls));
-            loadScheduledCalls();
-        };
 
         // Form submission
-        scheduleForm.addEventListener('submit', function(e) {
+        document.getElementById('scheduleForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            // Disable submit button
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Scheduling...';
-
-            // Get form data
-            const formData = new FormData(scheduleForm);
-            const name = formData.get('name');
-            const company = formData.get('company');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const date = formData.get('date');
-
-            // Format time
-            const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')} ${period}`;
-
-            // Format date nicely
-            const dateObj = new Date(date + 'T00:00:00');
-            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = dateObj.toLocaleDateString('en-US', dateOptions);
-
-            // Validate availability
-            const dayOfWeek = dateObj.getDay();
-            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-
-            if (!isWeekend) {
-                let hour24 = hour;
-                if (period === 'PM' && hour !== 12) hour24 += 12;
-                if (period === 'AM' && hour === 12) hour24 = 0;
-
-                const timeInMinutes = hour24 * 60 + minute;
-                const minTime = 14 * 60 + 30;
-                const maxTime = 22 * 60;
-
-                if (timeInMinutes < minTime || timeInMinutes > maxTime) {
-                    alert('Please select a time between 2:30 PM and 10:00 PM for weekdays.');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Schedule Call';
-                    return;
-                }
+            
+            if (!isTimeValid()) {
+                alert('Please select a time during our availability hours.');
+                return;
             }
+            
+            const formData = new FormData(this);
+            const formattedTime = `${currentHour}:${currentMinute.toString().padStart(2, '0')} ${currentPeriod}`;
+            const formattedDate = selectedDay.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            
+            const data = {
+                company: formData.get('company'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                website: formData.get('website') || 'Not provided',
+                notes: formData.get('notes') || 'None',
+                date: formattedDate,
+                time: formattedTime
+            };
 
-            // Create email subject and body
-            const subject = encodeURIComponent(`Call Request: ${name} from ${company}`);
+            const subject = encodeURIComponent(`Call Request: ${data.company}`);
             const body = encodeURIComponent(
-                `${name} wants to call at ${formattedTime} on ${formattedDate} for their company ${company}\n\n` +
-                `Contact Details:\n` +
-                `Name: ${name}\n` +
-                `Company: ${company}\n` +
-                `Email: ${email}\n` +
-                `Phone: ${phone}\n` +
-                `Requested Date: ${formattedDate}\n` +
-                `Requested Time: ${formattedTime} CST`
+                `NEW CALL REQUEST\n\n` +
+                `Company: ${data.company}\n` +
+                `Email: ${data.email}\n` +
+                `Phone: ${data.phone}\n` +
+                `Website: ${data.website}\n\n` +
+                `Scheduled:\n` +
+                `Date: ${data.date}\n` +
+                `Time: ${data.time} ET\n\n` +
+                `Notes: ${data.notes}\n\n` +
+                `---\nCall them at: ${data.phone}`
             );
 
-            // Save to localStorage
-            const calls = JSON.parse(localStorage.getItem('scheduledCalls') || '[]');
-            calls.push({
-                name,
-                company,
-                email,
-                phone,
-                date: formattedDate,
-                time: formattedTime,
-                timestamp: new Date().toISOString()
-            });
-            localStorage.setItem('scheduledCalls', JSON.stringify(calls));
-
-            // Send to email
             window.location.href = `mailto:webre.help@gmail.com?subject=${subject}&body=${body}`;
 
-            // Show success message
             setTimeout(() => {
-                scheduleForm.style.display = 'none';
-                successMessage.classList.add('show');
-                loadScheduledCalls();
-                
-                // Reset after 3 seconds
-                setTimeout(() => {
-                    scheduleForm.reset();
-                    hour = 12;
-                    minute = 0;
-                    period = 'PM';
-                    updateDisplay();
-                    scheduleForm.style.display = 'block';
-                    successMessage.classList.remove('show');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Schedule Call';
-                }, 3000);
+                document.getElementById('formCard').style.display = 'none';
+                document.getElementById('successMessage').classList.add('show');
             }, 500);
         });
 
         // Initialize
-        updateDisplay();
-        loadScheduledCalls();
+        generateWeeks();
     </script>
 </body>
 </html>
