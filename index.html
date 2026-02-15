@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>webre.co - Professional Websites for Contractors</title>
+    <title>webre.co - Professional Websites for Home Service Businesses</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -300,7 +300,7 @@
             position: relative;
         }
 
-        .launch-badge {
+        .price-badge {
             position: absolute;
             top: -15px;
             left: 50%;
@@ -313,6 +313,18 @@
             font-size: 0.85rem;
             letter-spacing: 0.5px;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            animation: subtlePulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes subtlePulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+            }
         }
 
         .pricing-header {
@@ -328,49 +340,11 @@
             font-weight: 600;
         }
 
-        .price-display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .old-price {
-            font-size: 2rem;
-            color: #999;
-            text-decoration: line-through;
-        }
-
         .price {
             font-size: 4rem;
             font-weight: 800;
             letter-spacing: -0.02em;
             color: #2563eb;
-        }
-
-        .savings {
-            background: #000;
-            color: #fff;
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            animation: subtlePulse 2.5s ease-in-out infinite;
-        }
-
-        @keyframes subtlePulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            }
-            50% {
-                transform: scale(1.03);
-                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-            }
         }
 
         .features {
@@ -512,10 +486,6 @@
             .price {
                 font-size: 3rem;
             }
-
-            .old-price {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
@@ -536,11 +506,11 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>webre.co</h1>
-            <p class="tagline">Professional Websites for Contractors</p>
-            <p class="subtitle">HVAC, roofing, plumbing, and electrical companies. Built in 7 days.</p>
+            <p class="tagline">Professional Websites That Keep Your Phone Ringing</p>
+            <p class="subtitle">Built for HVAC, roofing, plumbing, electrical, flooring, landscaping, and contractors. Ready in 7 days.</p>
             <div class="cta-buttons">
-                <a href="#pricing" class="btn btn-primary">See Pricing</a>
-                <a href="schedule.html" class="btn btn-secondary">Schedule Call</a>
+                <a href="schedule.html" class="btn btn-primary">Schedule Free Call</a>
+                <a href="#pricing" class="btn btn-secondary">See Pricing</a>
             </div>
             <div class="stats">
                 <div class="stat">
@@ -548,8 +518,8 @@
                     <span class="stat-label">To Launch</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">$2,000</span>
-                    <span class="stat-label">Launch Price</span>
+                    <span class="stat-number">$2,500</span>
+                    <span class="stat-label">One-Time Cost</span>
                 </div>
                 <div class="stat">
                     <span class="stat-number">Infinite</span>
@@ -562,11 +532,11 @@
     <!-- Process -->
     <section id="process">
         <h2>How It Works</h2>
-        <p class="section-subtitle">Simple, fast, professional</p>
+        <p class="section-subtitle">Built in 7 days. No hassle.</p>
         <div class="process-grid">
             <div class="process-step">
                 <div class="process-number">1</div>
-                <h3>15-Min Call</h3>
+                <h3>10-Min Call</h3>
                 <p>We discuss your business, current site, and what you need to get more customers.</p>
             </div>
             <div class="process-step">
@@ -584,17 +554,13 @@
 
     <!-- Pricing -->
     <section class="pricing" id="pricing">
-        <h2>Launch Pricing</h2>
-        <p class="section-subtitle">Limited time offer for early clients</p>
+        <h2>Simple Pricing</h2>
+        <p class="section-subtitle">Everything included, one flat rate</p>
         <div class="pricing-card">
-            <span class="launch-badge">LAUNCH SPECIAL</span>
+            <span class="price-badge">MOST CHARGE $5K-15K</span>
             <div class="pricing-header">
                 <h3>Professional Website</h3>
-                <div class="price-display">
-                    <span class="old-price">$2,500</span>
-                    <span class="price">$2,000</span>
-                </div>
-                <span class="savings">Save $500</span>
+                <div class="price">$2,500</div>
             </div>
             <ul class="features">
                 <li>Custom design for your industry</li>
@@ -602,10 +568,14 @@
                 <li>Contact form integration</li>
                 <li>Photo galleries</li>
                 <li>Basic SEO included</li>
+                <li>Domain included (first year)</li>
                 <li>Unlimited revisions until launch</li>
                 <li>7 days to launch</li>
             </ul>
             <a href="schedule.html" class="btn btn-primary" style="width: 100%; text-align: center; display: block;">Book Your Free Call</a>
+            <p style="text-align: center; margin-top: 1.5rem; color: #999; font-size: 0.85rem;">
+                By purchasing, you agree to our <a href="terms.html" style="color: #2563eb; text-decoration: underline;">Terms of Service</a>
+            </p>
         </div>
     </section>
 
@@ -632,7 +602,7 @@
                 </button>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        We'll help you with everything. If you need help with copywriting or photos, we'll work with what you have.
+                        Yes. You need to provide all text, photos, logos, and business information. We build the website, you provide the content.
                     </div>
                 </div>
             </div>
@@ -710,98 +680,11 @@
     <footer style="background: #1a1a1a; color: #fff; padding: 2.5rem 2rem; margin-top: 4rem;">
         <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
             <div style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: #fff;">webre.co</div>
-            <p style="color: #999; font-size: 0.9rem; margin-bottom: 0.75rem;">© 2025 webre.co • All rights reserved</p>
-            <button id="termsBtn" style="background: transparent; border: none; color: #999; font-weight: 600; cursor: pointer; font-size: 0.9rem; text-decoration: underline; padding: 0.5rem;">Terms of Service</button>
+            <p style="color: #999; font-size: 0.9rem; margin-bottom: 0.5rem;">© 2026 webre.co • All rights reserved</p>
+            <a href="terms.html" style="color: #999; text-decoration: underline; font-size: 0.9rem;">Terms of Service</a>
         </div>
     </footer>
 
-    <!-- Terms Modal -->
-    <div id="termsModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 2000; padding: 2rem; overflow-y: auto;">
-        <div style="max-width: 800px; margin: 2rem auto; background: #fff; border-radius: 16px; padding: 3rem; position: relative;">
-            <button id="closeModal" style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; font-size: 2rem; color: #666; cursor: pointer; line-height: 1;">&times;</button>
-            
-            <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Terms of Service</h2>
-            <p style="color: #666; margin-bottom: 2rem; font-size: 0.95rem;">Last updated: January 2025</p>
-            
-            <div style="font-size: 0.95rem; line-height: 1.8; color: #1a1a1a;">
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">1. Service Agreement</h3>
-                <p style="margin-bottom: 1rem;">
-                    Payment of $2,000 is required in full before development begins. The website will be delivered within 7 business days from the start of development. "Start of development" is defined as the date when the client has provided all necessary content (business information, photos, logos, text, etc.).
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">2. Revisions</h3>
-                <p style="margin-bottom: 1rem;">
-                    Unlimited revisions are included during the 7-day development period only. Revisions must be requested and completed before the final approval and launch of the website. Once the client approves the final website and it is launched, the revision period ends immediately.
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">3. Post-Launch Support</h3>
-                <p style="margin-bottom: 1rem;">
-                    Once the website is launched and the client confirms acceptance of the final product, webre.co has <strong>no obligation</strong> to provide support, maintenance, updates, bug fixes, or additional changes. Any work requested after launch is considered a new project and may be subject to additional fees at our sole discretion.
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">4. Client Responsibilities</h3>
-                <p style="margin-bottom: 1rem;">
-                    The client is responsible for providing all necessary content including but not limited to: business information, text/copy, images, photos, logos, branding assets, service descriptions, contact information, and any other materials needed to complete the website. Delays in providing materials may extend the delivery timeline. webre.co is not responsible for delays caused by the client's failure to provide content in a timely manner.
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">5. Refund Policy</h3>
-                <p style="margin-bottom: 1rem;">
-                    <strong>No refunds will be issued once development has begun.</strong> If the client is unsatisfied with the final product, we will work within the 7-day development period to address concerns through revisions. By making payment, the client agrees to this no-refund policy.
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">6. Limitation of Liability</h3>
-                <p style="margin-bottom: 1rem;">
-                    webre.co is not liable for any loss of business, revenue, profits, or damages (direct, indirect, incidental, or consequential) resulting from the use or inability to use the website. Our maximum liability under any circumstances is strictly limited to the amount paid for services ($2,000).
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">7. Hosting & Domain</h3>
-                <p style="margin-bottom: 1rem;">
-                    The client is solely responsible for obtaining and maintaining their own web hosting and domain registration. webre.co can provide recommendations for hosting providers but is not responsible for ongoing hosting costs, server performance, domain renewals, or any hosting-related issues.
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">8. Intellectual Property</h3>
-                <p style="margin-bottom: 1rem;">
-                    Upon full payment and delivery, the client owns the completed website and its content. However, webre.co retains the right to showcase the completed website in our portfolio and marketing materials.
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">9. Timeline Extensions</h3>
-                <p style="margin-bottom: 1rem;">
-                    The 7-day delivery timeline begins only after the client has provided all necessary content. If the client requests significant changes to the project scope after development has begun, the timeline may be extended at our discretion.
-                </p>
-
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;">10. Agreement</h3>
-                <p style="margin-bottom: 1rem;">
-                    By making payment for our services, the client agrees to all terms outlined in this Terms of Service document. This agreement is legally binding and governs the relationship between the client and webre.co.
-                </p>
-
-                <div style="background: #f0f7ff; border: 2px solid #2563eb; border-radius: 8px; padding: 1.25rem; margin-top: 2rem;">
-                    <p style="margin: 0; font-weight: 600; color: #2563eb;">
-                        Questions? Contact us at webre.help@gmail.com before booking your call.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Terms modal
-        document.getElementById('termsBtn').addEventListener('click', () => {
-            document.getElementById('termsModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        });
-
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('termsModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-        document.getElementById('termsModal').addEventListener('click', (e) => {
-            if (e.target.id === 'termsModal') {
-                document.getElementById('termsModal').style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-    </script>
 
 </body>
 </html>
