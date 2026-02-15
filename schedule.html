@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule a Call - webre.co</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,16 +17,48 @@
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: #fafafa;
+            background: #FFFFFF;
             color: #1a1a1a;
             line-height: 1.6;
             padding: 2rem;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: cloudMove 20s ease-in-out infinite;
+        }
+
+        @keyframes cloudMove {
+            0%, 100% {
+                background: 
+                    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            }
+            50% {
+                background: 
+                    radial-gradient(circle at 30% 60%, rgba(37, 99, 235, 0.09) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.07) 0%, transparent 50%);
+            }
         }
 
         .container {
             max-width: 700px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .back-link {
@@ -53,6 +86,8 @@
             border: 1px solid #e5e5e5;
             border-radius: 16px;
             padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
         h1 {
@@ -67,6 +102,17 @@
             margin-bottom: 2rem;
             font-size: 1.05rem;
             text-align: center;
+        }
+
+        .limit-warning {
+            background: #fee;
+            border: 2px solid #f44;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #c00;
+            font-weight: 600;
         }
 
         .availability-banner {
@@ -122,7 +168,7 @@
             color: #1a1a1a;
         }
 
-        input, textarea {
+        input {
             width: 100%;
             padding: 0.85rem;
             border: 2px solid #e5e5e5;
@@ -132,17 +178,16 @@
             transition: all 0.2s;
         }
 
-        input:focus, textarea:focus {
+        input:focus {
             outline: none;
             border-color: #2563eb;
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 100px;
+        input:disabled {
+            background: #f5f5f5;
+            cursor: not-allowed;
         }
 
-        /* Week Selector */
         .week-selector {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -188,7 +233,6 @@
             font-weight: 500;
         }
 
-        /* Day Selector */
         .day-selector-section {
             display: none;
         }
@@ -242,7 +286,6 @@
             font-weight: 700;
         }
 
-        /* Time Picker */
         .time-slots-container {
             display: none;
         }
@@ -318,6 +361,29 @@
             letter-spacing: 0.5px;
         }
 
+        .time-status {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .time-status.taken {
+            display: block;
+            background: #fee;
+            border: 2px solid #f44;
+            color: #c00;
+        }
+
+        .time-status.available {
+            display: block;
+            background: #efe;
+            border: 2px solid #4c4;
+            color: #060;
+        }
+
         .btn {
             width: 100%;
             padding: 1.15rem;
@@ -330,43 +396,187 @@
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 2rem;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
         }
 
         .btn:hover:not(:disabled) {
             background: #1d4ed8;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
         }
 
         .btn:disabled {
             opacity: 0.4;
             cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .btn-small {
+            padding: 0.7rem 1.2rem;
+            font-size: 0.9rem;
+            margin-top: 0;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+        }
+
+        .btn-small:hover:not(:disabled) {
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+        }
+
+        .btn-danger:hover:not(:disabled) {
+            background: #b91c1c;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
         }
 
         .success {
-            background: #2563eb;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: #fff;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             border-radius: 16px;
             text-align: center;
             display: none;
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
         }
 
         .success.show {
             display: block;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .success h3 {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .success p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .my-bookings {
+            margin-top: 3rem;
+        }
+
+        .my-bookings h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .booking-card {
+            background: #fff;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 0;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .booking-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .booking-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            padding: 1.5rem;
+        }
+
+        .booking-time {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .booking-date {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .booking-info {
+            display: grid;
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+
+        .booking-info-item {
+            font-size: 0.95rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .booking-info-label {
+            font-weight: 600;
+            color: #666;
+            margin-right: 0.75rem;
+            min-width: 80px;
+        }
+
+        .booking-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .edit-mode .booking-info input {
+            flex: 1;
+            padding: 0.6rem;
+            border: 2px solid #2563eb;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .edit-mode .booking-info input:focus {
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
             body {
-                padding: 1rem;
+                padding: 0;
+                background: #fff;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .container {
+                max-width: 100%;
             }
 
             .card {
                 padding: 2rem;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
             }
 
             h1 {
@@ -398,6 +608,19 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
+
+            .booking-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .booking-info-label {
+                margin-bottom: 0.25rem;
+            }
         }
     </style>
 </head>
@@ -409,6 +632,10 @@
             <h1>Schedule Your Call</h1>
             <p class="subtitle">Book your free 15-minute strategy call</p>
 
+            <div class="limit-warning" id="limitWarning" style="display: none;">
+                ⚠️ You already have 3 calls scheduled. Please cancel one before booking another.
+            </div>
+
             <div class="availability-banner">
                 <h3>📅 Our Availability</h3>
                 <div class="availability-times">
@@ -418,37 +645,30 @@
             </div>
 
             <form id="scheduleForm">
-                <!-- Contact Info -->
                 <div class="form-section">
                     <div class="form-section-title">Your Information</div>
 
                     <div class="form-group">
                         <label>Company Name *</label>
-                        <input type="text" name="company" required>
+                        <input type="text" name="company" id="companyInput" required>
                     </div>
 
                     <div class="form-group">
                         <label>Email *</label>
-                        <input type="email" name="email" required>
+                        <input type="email" name="email" id="emailInput" required>
                     </div>
 
                     <div class="form-group">
                         <label>Phone *</label>
-                        <input type="tel" name="phone" required>
+                        <input type="tel" name="phone" id="phoneInput" required>
                     </div>
 
                     <div class="form-group">
                         <label>Current Website URL (Optional)</label>
-                        <input type="url" name="website" placeholder="https://yourwebsite.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Notes (Optional)</label>
-                        <textarea name="notes" placeholder="Anything you'd like us to know before the call"></textarea>
+                        <input type="text" name="website" id="websiteInput" placeholder="yourwebsite.com">
                     </div>
                 </div>
 
-                <!-- Date Selection -->
                 <div class="form-section">
                     <div class="form-section-title">Choose Your Date & Time</div>
                     
@@ -486,34 +706,227 @@
                                     <div class="time-unit-label">AM/PM</div>
                                 </div>
                             </div>
+                            <div class="time-status" id="timeStatus"></div>
                         </div>
                     </div>
                 </div>
 
                 <button type="submit" class="btn" id="submitBtn" disabled>Schedule My Call</button>
+
+                <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 1.5rem;">
+                    By scheduling, you agree to our <a href="terms.html" style="color: #2563eb; text-decoration: underline;">Terms of Service</a>
+                </p>
             </form>
         </div>
 
-        <div class="success" id="successMessage">
+        <div class="my-bookings" id="myBookings" style="display: none;">
+            <h2>Your Scheduled Calls</h2>
+            <div id="bookingsList"></div>
+        </div>
+
+        <div class="success card" id="successMessage">
             <h3>✓ Call Scheduled!</h3>
-            <p>We'll call you at your scheduled time. Check your email for confirmation.</p>
+            <p>We'll call you at your scheduled time. Talk soon!</p>
         </div>
     </div>
 
     <script>
-        // State
+        const { createClient } = supabase;
+        const supabaseClient = createClient(
+            'https://nhvmmhxvktmelhquckia.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5odm1taHh2a3RtZWxocXVja2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MzY1MzEsImV4cCI6MjA4NTMxMjUzMX0.9yilT3U5OsDv3lIQnCR8LAoYoLj1cjSlBRwCo4ACzZQ'
+        );
+
         let selectedWeek = null;
         let selectedDay = null;
         let currentHour = 3;
         let currentMinute = 0;
         let currentPeriod = 'PM';
 
-        // Generate weeks (Sunday to Saturday) starting THIS week
+        function getLocalBookings() {
+            const bookings = localStorage.getItem('webre_bookings');
+            return bookings ? JSON.parse(bookings) : [];
+        }
+
+        function saveLocalBookings(bookings) {
+            localStorage.setItem('webre_bookings', JSON.stringify(bookings));
+        }
+
+        function checkBookingLimit() {
+            const bookings = getLocalBookings();
+            const limitWarning = document.getElementById('limitWarning');
+            const form = document.getElementById('scheduleForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (bookings.length >= 3) {
+                limitWarning.style.display = 'block';
+                Array.from(form.elements).forEach(el => {
+                    if (el.tagName !== 'BUTTON') el.disabled = true;
+                });
+                submitBtn.disabled = true;
+                return true;
+            } else {
+                limitWarning.style.display = 'none';
+                Array.from(form.elements).forEach(el => el.disabled = false);
+                return false;
+            }
+        }
+
+        function displayLocalBookings() {
+            const bookings = getLocalBookings();
+            
+            if (bookings.length === 0) {
+                document.getElementById('myBookings').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('myBookings').style.display = 'block';
+            const bookingsList = document.getElementById('bookingsList');
+            bookingsList.innerHTML = '';
+
+            bookings.forEach(booking => {
+                const card = document.createElement('div');
+                card.className = 'booking-card';
+                card.id = `booking-${booking.id}`;
+                
+                const date = new Date(booking.scheduled_date + 'T00:00:00');
+                const dateStr = date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+                
+                card.innerHTML = `
+                    <div class="booking-header">
+                        <div class="booking-time">${booking.scheduled_time}</div>
+                        <div class="booking-date">${dateStr}</div>
+                    </div>
+                    <div class="booking-info" id="info-${booking.id}">
+                        <div class="booking-info-item">
+                            <span class="booking-info-label">Company:</span>
+                            <span id="company-${booking.id}">${booking.company_name}</span>
+                        </div>
+                        <div class="booking-info-item">
+                            <span class="booking-info-label">Email:</span>
+                            <span id="email-${booking.id}">${booking.email}</span>
+                        </div>
+                        <div class="booking-info-item">
+                            <span class="booking-info-label">Phone:</span>
+                            <span id="phone-${booking.id}">${booking.phone}</span>
+                        </div>
+                        ${booking.website ? `
+                        <div class="booking-info-item">
+                            <span class="booking-info-label">Website:</span>
+                            <span id="website-${booking.id}">${booking.website}</span>
+                        </div>` : ''}
+                    </div>
+                    <div class="booking-actions">
+                        <button class="btn btn-small" onclick="editBooking('${booking.id}')">✏️ Edit Info</button>
+                        <button class="btn btn-small btn-danger" onclick="cancelBooking('${booking.id}')">❌ Cancel</button>
+                    </div>
+                `;
+                
+                bookingsList.appendChild(card);
+            });
+        }
+
+        async function editBooking(id) {
+            const bookings = getLocalBookings();
+            const booking = bookings.find(b => b.id === id);
+            if (!booking) return;
+
+            const card = document.getElementById(`booking-${id}`);
+            const infoDiv = document.getElementById(`info-${id}`);
+            const isEditing = card.classList.contains('edit-mode');
+
+            if (isEditing) {
+                const editBtn = card.querySelector('.btn-small:not(.btn-danger)');
+                editBtn.disabled = true;
+                editBtn.textContent = '💾 Saving...';
+                card.classList.add('loading');
+
+                const newCompany = document.getElementById(`company-input-${id}`).value.trim();
+                const newEmail = document.getElementById(`email-input-${id}`).value.trim();
+                const newPhone = document.getElementById(`phone-input-${id}`).value.trim();
+                const newWebsite = document.getElementById(`website-input-${id}`)?.value.trim() || null;
+
+                const { data, error } = await supabaseClient
+                    .from('bookings')
+                    .update({
+                        company_name: newCompany,
+                        email: newEmail,
+                        phone: newPhone,
+                        website: newWebsite
+                    })
+                    .eq('id', id)
+                    .select();
+
+                card.classList.remove('loading');
+
+                if (error) {
+                    alert('Failed to update. Please try again.');
+                    editBtn.disabled = false;
+                    editBtn.textContent = '✏️ Edit Info';
+                    return;
+                }
+
+                booking.company_name = newCompany;
+                booking.email = newEmail;
+                booking.phone = newPhone;
+                booking.website = newWebsite;
+                saveLocalBookings(bookings);
+                displayLocalBookings();
+            } else {
+                card.classList.add('edit-mode');
+                infoDiv.innerHTML = `
+                    <div class="booking-info-item">
+                        <span class="booking-info-label">Company:</span>
+                        <input type="text" id="company-input-${id}" value="${booking.company_name}">
+                    </div>
+                    <div class="booking-info-item">
+                        <span class="booking-info-label">Email:</span>
+                        <input type="email" id="email-input-${id}" value="${booking.email}">
+                    </div>
+                    <div class="booking-info-item">
+                        <span class="booking-info-label">Phone:</span>
+                        <input type="tel" id="phone-input-${id}" value="${booking.phone}">
+                    </div>
+                    <div class="booking-info-item">
+                        <span class="booking-info-label">Website:</span>
+                        <input type="text" id="website-input-${id}" value="${booking.website || ''}" placeholder="yourwebsite.com">
+                    </div>
+                `;
+                
+                const editBtn = card.querySelector('.btn-small:not(.btn-danger)');
+                editBtn.textContent = '💾 Save';
+            }
+        }
+
+        async function cancelBooking(id) {
+            if (!confirm('Are you sure you want to cancel this call?')) return;
+
+            const card = document.getElementById(`booking-${id}`);
+            card.classList.add('loading');
+
+            const { error } = await supabaseClient
+                .from('bookings')
+                .delete()
+                .eq('id', id);
+
+            if (error) {
+                card.classList.remove('loading');
+                alert('Failed to cancel. Please try again.');
+                return;
+            }
+
+            const bookings = getLocalBookings();
+            const updated = bookings.filter(b => b.id !== id);
+            saveLocalBookings(updated);
+            displayLocalBookings();
+            checkBookingLimit();
+            checkFormComplete();
+        }
+
         function generateWeeks() {
             const weekSelector = document.getElementById('weekSelector');
             const today = new Date();
             
-            // Find this Sunday
             const daysSinceSunday = today.getDay();
             const thisSunday = new Date(today);
             thisSunday.setDate(today.getDate() - daysSinceSunday);
@@ -550,7 +963,6 @@
             }
         }
 
-        // Generate days for selected week
         function generateDays(weekStart, isThisWeek) {
             const daySelector = document.getElementById('daySelector');
             daySelector.innerHTML = '';
@@ -582,6 +994,7 @@
                         selectedDay = date;
                         initTimePicker(date);
                         document.getElementById('timeSlotsContainer').classList.add('active');
+                        checkTimeAvailability();
                         checkFormComplete();
                     });
                 }
@@ -590,17 +1003,14 @@
             }
         }
 
-        // Initialize time picker with valid range for selected day
         function initTimePicker(date) {
             const dayOfWeek = date.getDay();
             const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
             
             if (isWeekend) {
-                // Weekends: default to 9 AM
                 currentHour = 9;
                 currentPeriod = 'AM';
             } else {
-                // Weekdays: default to 3 PM
                 currentHour = 3;
                 currentPeriod = 'PM';
             }
@@ -609,45 +1019,72 @@
             updateTimeDisplay();
         }
 
-        // Update time display
         function updateTimeDisplay() {
             document.getElementById('hourDisplay').textContent = currentHour;
             document.getElementById('minuteDisplay').textContent = currentMinute.toString().padStart(2, '0');
             document.getElementById('periodDisplay').textContent = currentPeriod;
+            checkTimeAvailability();
         }
 
-        // Check if time is valid for selected day
+        async function checkTimeAvailability() {
+            if (!selectedDay) return;
+            
+            const formattedTime = `${currentHour}:${currentMinute.toString().padStart(2, '0')} ${currentPeriod}`;
+            const formattedDate = selectedDay.toISOString().split('T')[0];
+            
+            const timeStatus = document.getElementById('timeStatus');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (!isTimeValid()) {
+                timeStatus.className = 'time-status taken';
+                timeStatus.textContent = '❌ Time is not available';
+                submitBtn.disabled = true;
+                return;
+            }
+            
+            const { data, error } = await supabaseClient
+                .from('bookings')
+                .select('id')
+                .eq('scheduled_date', formattedDate)
+                .eq('scheduled_time', formattedTime)
+                .limit(1);
+            
+            if (data && data.length > 0) {
+                timeStatus.className = 'time-status taken';
+                timeStatus.textContent = '❌ This time is already taken';
+                submitBtn.disabled = true;
+            } else {
+                timeStatus.className = 'time-status available';
+                timeStatus.textContent = '✓ This time is available';
+                checkFormComplete();
+            }
+        }
+
         function isTimeValid() {
             if (!selectedDay) return false;
             
             const dayOfWeek = selectedDay.getDay();
             const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
             
-            // Convert to 24-hour for comparison
             let hour24 = currentHour;
             if (currentPeriod === 'PM' && currentHour !== 12) hour24 += 12;
             if (currentPeriod === 'AM' && currentHour === 12) hour24 = 0;
             
             if (isWeekend) {
-                // Weekends: 9 AM (9) to 5 PM (17)
                 return hour24 >= 9 && hour24 <= 17;
             } else {
-                // Weekdays: 3 PM (15) to 7 PM (19)
                 return hour24 >= 15 && hour24 <= 19;
             }
         }
 
-        // Arrow button handlers
         document.getElementById('hourUp').addEventListener('click', () => {
             currentHour = currentHour === 12 ? 1 : currentHour + 1;
             updateTimeDisplay();
-            checkFormComplete();
         });
 
         document.getElementById('hourDown').addEventListener('click', () => {
             currentHour = currentHour === 1 ? 12 : currentHour - 1;
             updateTimeDisplay();
-            checkFormComplete();
         });
 
         document.getElementById('minuteUp').addEventListener('click', () => {
@@ -655,7 +1092,6 @@
             const currentIndex = minutes.indexOf(currentMinute);
             currentMinute = minutes[(currentIndex + 1) % 4];
             updateTimeDisplay();
-            checkFormComplete();
         });
 
         document.getElementById('minuteDown').addEventListener('click', () => {
@@ -663,73 +1099,88 @@
             const currentIndex = minutes.indexOf(currentMinute);
             currentMinute = minutes[(currentIndex - 1 + 4) % 4];
             updateTimeDisplay();
-            checkFormComplete();
         });
 
         document.getElementById('periodUp').addEventListener('click', () => {
             currentPeriod = currentPeriod === 'AM' ? 'PM' : 'AM';
             updateTimeDisplay();
-            checkFormComplete();
         });
 
         document.getElementById('periodDown').addEventListener('click', () => {
             currentPeriod = currentPeriod === 'AM' ? 'PM' : 'AM';
             updateTimeDisplay();
-            checkFormComplete();
         });
 
         function checkFormComplete() {
+            if (checkBookingLimit()) return;
+
             const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = !(selectedDay && isTimeValid());
+            const company = document.querySelector('input[name="company"]').value.trim();
+            const email = document.querySelector('input[name="email"]').value.trim();
+            const phone = document.querySelector('input[name="phone"]').value.trim();
+            
+            const requiredFieldsFilled = company && email && phone;
+            const timeStatus = document.getElementById('timeStatus');
+            const timeAvailable = timeStatus.classList.contains('available');
+            
+            submitBtn.disabled = !(selectedDay && isTimeValid() && timeAvailable && requiredFieldsFilled);
         }
 
-        // Form submission
-        document.getElementById('scheduleForm').addEventListener('submit', function(e) {
+        document.getElementById('scheduleForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            if (!isTimeValid()) {
-                alert('Please select a time during our availability hours.');
-                return;
-            }
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Scheduling...';
             
             const formData = new FormData(this);
             const formattedTime = `${currentHour}:${currentMinute.toString().padStart(2, '0')} ${currentPeriod}`;
-            const formattedDate = selectedDay.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            const formattedDate = selectedDay.toISOString().split('T')[0];
             
-            const data = {
-                company: formData.get('company'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                website: formData.get('website') || 'Not provided',
-                notes: formData.get('notes') || 'None',
-                date: formattedDate,
-                time: formattedTime
-            };
-
-            const subject = encodeURIComponent(`Call Request: ${data.company}`);
-            const body = encodeURIComponent(
-                `NEW CALL REQUEST\n\n` +
-                `Company: ${data.company}\n` +
-                `Email: ${data.email}\n` +
-                `Phone: ${data.phone}\n` +
-                `Website: ${data.website}\n\n` +
-                `Scheduled:\n` +
-                `Date: ${data.date}\n` +
-                `Time: ${data.time} ET\n\n` +
-                `Notes: ${data.notes}\n\n` +
-                `---\nCall them at: ${data.phone}`
-            );
-
-            window.location.href = `mailto:webre.help@gmail.com?subject=${subject}&body=${body}`;
-
-            setTimeout(() => {
+            const { data, error } = await supabaseClient
+                .from('bookings')
+                .insert([{
+                    company_name: formData.get('company'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    website: formData.get('website') || null,
+                    scheduled_date: formattedDate,
+                    scheduled_time: formattedTime,
+                    terms_accepted: true
+                }])
+                .select();
+            
+            if (error) {
+                alert('Something went wrong. Please try again or contact us at webre.help@gmail.com');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Schedule My Call';
+            } else {
+                const bookingId = data[0].id;
+                const bookings = getLocalBookings();
+                bookings.push({
+                    id: bookingId,
+                    company_name: formData.get('company'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    website: formData.get('website') || null,
+                    scheduled_date: formattedDate,
+                    scheduled_time: formattedTime
+                });
+                saveLocalBookings(bookings);
+                
                 document.getElementById('formCard').style.display = 'none';
                 document.getElementById('successMessage').classList.add('show');
-            }, 500);
+                displayLocalBookings();
+            }
         });
 
-        // Initialize
         generateWeeks();
+        displayLocalBookings();
+        checkBookingLimit();
+        
+        document.querySelector('input[name="company"]').addEventListener('input', checkFormComplete);
+        document.querySelector('input[name="email"]').addEventListener('input', checkFormComplete);
+        document.querySelector('input[name="phone"]').addEventListener('input', checkFormComplete);
     </script>
 </body>
 </html>
