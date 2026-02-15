@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - webre.co</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #FFFFFF;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: cloudMove 20s ease-in-out infinite;
+        }
+
+        @keyframes cloudMove {
+            0%, 100% {
+                background: 
+                    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            }
+            50% {
+                background: 
+                    radial-gradient(circle at 30% 60%, rgba(37, 99, 235, 0.09) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.07) 0%, transparent 50%);
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #2563eb;
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 3rem;
+        }
+
+        .intro {
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+        }
+
+        .intro p {
+            margin: 0;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #2563eb;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: #333;
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+
+        strong {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .contact-box {
+            background: #f0f7ff;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .contact-box p {
+            margin: 0;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .contact-box a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+                background: #fff;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .card {
+                padding: 2rem;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <a href="index.html" class="back-link">←</a>
+            
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last updated: February 2026</p>
+
+            <div class="intro">
+                <p>By purchasing services from webre.co, you agree to these Terms of Service. Please read carefully before proceeding with payment.</p>
+            </div>
+
+            <h2>1. Service Agreement</h2>
+            <p>Payment of <strong>$2,500</strong> is required in full before development begins. The website will be delivered within <strong>7 business days</strong> from the start of development.</p>
+            
+            <p><strong>"Start of development"</strong> is defined as the date when the client has provided all necessary content including:</p>
+            <ul>
+                <li>Business information and company details</li>
+                <li>All text, copy, and descriptions</li>
+                <li>Photos, images, and logos</li>
+                <li>Contact information and service descriptions</li>
+                <li>Any other materials required to complete the website</li>
+            </ul>
+
+            <h2>2. Payment Terms</h2>
+            <p><strong>No refunds will be issued once development has begun.</strong> By making payment, you acknowledge and agree to this no-refund policy.</p>
+            
+            <p>If you are unsatisfied with the final product during the 7-day development period, we will work with you through unlimited revisions to address your concerns. Once the website is approved and launched, the transaction is final and complete.</p>
+
+            <h2>3. Revisions</h2>
+            <p>Unlimited revisions are included <strong>during the 7-day development period only</strong>. All revision requests must be communicated and completed before final approval and launch.</p>
+            
+            <p>Once you approve the final website and it is launched, the revision period ends immediately. No further revisions, changes, or modifications will be provided.</p>
+
+            <h2>4. Post-Launch Support</h2>
+            <p><strong>Once the website is launched and you confirm acceptance of the final product, webre.co has NO obligation to provide:</strong></p>
+            <ul>
+                <li>Technical support or troubleshooting</li>
+                <li>Website maintenance or updates</li>
+                <li>Bug fixes or error corrections</li>
+                <li>Content updates or modifications</li>
+                <li>Security updates or patches</li>
+                <li>Performance optimization</li>
+                <li>Any additional changes or work</li>
+            </ul>
+
+            <p>Any work requested after launch is considered a new project and may be subject to additional fees at our sole discretion. We are under no obligation to accept new work requests.</p>
+
+            <h2>5. Client Responsibilities</h2>
+            <p>You are responsible for providing all necessary content in a timely manner. Delays in providing required materials may extend the delivery timeline.</p>
+            
+            <p><strong>webre.co is not responsible for delays caused by:</strong></p>
+            <ul>
+                <li>Failure to provide content or materials</li>
+                <li>Late delivery of photos, logos, or text</li>
+                <li>Unclear or incomplete instructions</li>
+                <li>Slow response times to revision requests</li>
+            </ul>
+
+            <h2>6. Hosting & Domain</h2>
+            <p>The domain name is included for the first year only. You are solely responsible for:</p>
+            <ul>
+                <li>Renewing the domain after the first year</li>
+                <li>Obtaining and maintaining web hosting</li>
+                <li>Paying all ongoing hosting costs</li>
+                <li>Managing domain renewals and transfers</li>
+                <li>Server performance and uptime</li>
+            </ul>
+
+            <p>We can provide recommendations for hosting providers, but we are not responsible for any hosting-related issues, downtime, or technical problems with your hosting service.</p>
+
+            <h2>7. Limitation of Liability</h2>
+            
+            <p><strong>Our maximum liability under any circumstances is strictly limited to the amount you paid for services ($2,500).</strong> We will not be liable for any amount exceeding this.</p>
+
+            <p><strong>webre.co is NOT liable for:</strong></p>
+            <ul>
+                <li>Loss of business, revenue, or profits</li>
+                <li>Loss of data or information</li>
+                <li>Indirect, incidental, or consequential damages</li>
+                <li>Website downtime or hosting failures</li>
+                <li>Security breaches or hacking attempts</li>
+                <li>Search engine ranking or SEO performance</li>
+                <li>Third-party service failures (hosting, domain, email)</li>
+                <li>Browser compatibility issues after launch</li>
+                <li>Changes to third-party platforms or services</li>
+                <li>Customer complaints or lost sales</li>
+            </ul>
+
+            <h2>8. Warranty Disclaimer</h2>
+            <p>The website is provided <strong>"AS IS"</strong> without any warranties, express or implied. We do not guarantee:</p>
+            <ul>
+                <li>That the website will be error-free or bug-free after launch</li>
+                <li>Compatibility with all browsers or devices</li>
+                <li>That the website will generate customers or revenue</li>
+                <li>That the website will rank in search engines</li>
+                <li>Continuous operation or uptime</li>
+            </ul>
+
+            <h2>9. Intellectual Property</h2>
+            <p>Upon full payment and delivery, you own the completed website and its content. However, <strong>webre.co retains the right to:</strong></p>
+            <ul>
+                <li>Showcase the completed website in our portfolio</li>
+                <li>Use screenshots in marketing materials</li>
+                <li>Reference the project in case studies</li>
+                <li>Display the work on our website</li>
+            </ul>
+
+            <h2>10. Timeline & Delivery</h2>
+            <p>The 7-day delivery timeline begins only after you provide all required content. If you request significant changes to the project scope after development has begun, the timeline may be extended at our discretion.</p>
+            
+            <p>We will make reasonable efforts to meet deadlines, but we are not liable for any damages resulting from delivery delays.</p>
+
+            <h2>11. Scope Changes</h2>
+            <p>The project scope is defined during the initial consultation call. Requests that fall outside the original scope may require additional fees and timeline extensions.</p>
+            
+            <p>Adding new pages, features, or functionality beyond what was originally discussed constitutes a scope change and may be declined or quoted separately.</p>
+
+            <h2>12. Content Accuracy</h2>
+            <p>You are responsible for ensuring all content provided is accurate, legal, and does not infringe on any third-party rights. We are not responsible for:</p>
+            <ul>
+                <li>Accuracy of information you provide</li>
+                <li>Copyright or trademark infringement in your materials</li>
+                <li>Legal compliance of your business practices</li>
+                <li>Claims made in your content</li>
+            </ul>
+
+            <h2>13. Termination</h2>
+            <p>Either party may terminate this agreement before development begins with full refund. Once development begins, no refunds will be issued under any circumstances.</p>
+
+            <h2>14. Dispute Resolution</h2>
+            <p>Any disputes will be resolved through binding arbitration in accordance with the rules of the American Arbitration Association. You waive any right to a jury trial.</p>
+
+            <h2>15. Entire Agreement</h2>
+            <p>These Terms of Service constitute the entire agreement between you and webre.co. Any verbal promises or agreements not included in this document are not binding.</p>
+
+            <h2>16. Changes to Terms</h2>
+            <p>We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your use of our services after changes constitutes acceptance of the modified terms.</p>
+
+            <h2>17. Severability</h2>
+            <p>If any provision of these terms is found to be unenforceable, the remaining provisions will remain in full effect.</p>
+
+            <h2>18. No Partnership</h2>
+            <p>Nothing in these terms creates a partnership, joint venture, employment, or agency relationship between you and webre.co.</p>
+
+            <div class="contact-box">
+                <p>Questions about these terms? Contact us at <a href="mailto:contact@webre.co">contact@webre.co</a> before purchasing.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
